@@ -1,0 +1,2 @@
+class TrackingMapNotFound(Exception):
+    pass
