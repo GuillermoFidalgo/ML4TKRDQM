@@ -7,21 +7,58 @@ from bs4 import BeautifulSoup
 
 def testRR():
     runs = runregistry.get_runs(filter={
-        'tracker-strip':'GOOD',
-        'tracker-pix':'GOOD',
-        'oms_attributes.l1_hlt_mode': {
-            'like': { 
-                'and' : [{'%Collisions2018%'},
-                         {'Collisions2017%'}]
-                }
-            },
-        'run_number': {
-            'and': [{'>': 270000}, 
-                    {'<': 310000}]},
+        'run_number': { 'and': [{'>': 270000}, {'<': 310000}]},
+        'tracker-strip': 'GOOD',
+        'oms_attributes.l1_hlt_mode': {'like': '%collision%'}        
         })
     return runs
 
-#{'>': 270000}
+def getrepeatedruns(global_runs_with_rootfiles):
+    i=0
+    repeatruns=[]
+    for run in global_runs_with_rootfiles: 
+        if run == global_runs_with_rootfiles[-1]:
+    #         print "Last run",run
+            break
+        if run==global_runs_with_rootfiles[i+1]:
+            #print "repeated run:",run
+            repeatruns.append(run)
+        i+=1
+    print 'there are',len(repeatruns),'repeated runs'
+    return repeatruns
+
+def getGjsn():
+    baseurl='https://cms-service-dqm.web.cern.ch/cms-service-dqm/CAF/certification/'
+    json_runs_2018="Collisions18/13TeV/ReReco/Cert_314472-325175_13TeV_17SeptEarlyReReco2018ABC_PromptEraD_Collisions18_JSON.txt"
+    json_runs_2017="Collisions17/13TeV/ReReco/Cert_294927-306462_13TeV_EOY2017ReReco_Collisions17_JSON_v1.txt"
+    json_runs_2016="Collisions16/13TeV/ReReco/Final/Cert_271036-284044_13TeV_ReReco_07Aug2017_Collisions16_JSON.txt"
+    # json_runs_2015="Run2015/ZeroBias/"
+
+
+    json_runs=[json_runs_2018,json_runs_2017,json_runs_2016]#,url_runs_2015]
+    print "Fetching from: "+baseurl
+    print "list of relative urls: ",json_runs
+    
+    
+    json_runslist=[]
+    for url in json_runs:
+        response=cernrequests.get(baseurl+url) # open the document
+        index = response.text                  # read the document
+        a=str(index)                           # convert to string
+        soup = BeautifulSoup(a, 'html.parser') # create the soup object
+
+        a=re.findall(r"(\d{6})",str(soup))     #find exactly 6 occurrences of a number
+                                               #in other words find 6 digit numbers
+
+        print "amount of runs in the json",len(a),"in",url
+        print("From",a[0],"to",a[-1])
+        json_runslist.append(a)
+
+    
+    return Gjsonruns
+
+
+
 def getruns(year="all",rdirs='False'):
 
     baseurl='https://cmsweb.cern.ch/dqm/offline/data/browse/ROOT/OfflineData/'
