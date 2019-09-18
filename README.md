@@ -14,10 +14,55 @@ python --version
 ```
 Python 3.6.8
 ```
+## Setup
+
+At your terminal (choose different port for your case)
+
+#### At lpc
+```bash
+kinit username@FNAL.GOV
+
+ssh -L 127.0.0.1:9999:127.0.0.1:9999 username@cmslpc-sl6.fnal.gov
+cd path/to/your/working/area
+```
+#### Or at lxplus
+
+```bash
+
+ssh -L 127.0.0.1:9999:127.0.0.1:9999 username@lxplus.cern.ch
+cd path/to/your/working/area
+```
+
+You can choose a CMSSW release (but the script has only been tested on release 10_2_10)
+```bash
+cmsrel CMSSW_10_2_10
+cd CMSSW_10_2_10/src/
+cmsenv
+
+git clone git@github.com:GuillermoFidalgo/ML4TRKDQM.git
+#or 
+git clone https://github.com/GuillermoFidalgo/ML4TRKDQM.git
+
+cd ML4TRKDQM
+
+jupyter notebook --port 9999 --ip 127.0.0.1 --no-browser
+```
+**Check your terminal and copy paste URL into your browser**
+
+
+
+
+
+### In order to use this script you must have the appropiate certificate in the same directory as the script (Unless you specify the path to it)
+[Open the notebook](ListOfRuns.ipynb) to interact with the code and make the apporpiate changes to your needs.
+
+Notice that there is an `index.html` document. You should ignore this for now as we will create this file repeatedly and rewrite it in the script. This will not be needed in the script but will used for now in the python notebook.
+
+**After playing with the notebook you can see other functionality in the [script](ListRuns.py)**
 
 ### Virtual environment
 
-*Side Note* **If you clone from this repo please remove `venv/` and all of its contents *before creating a virtual enviroment***
+*Side Note* **If you clone from this repo please remove `venv/` and all of its contents *before* creating a virtual enviroment**
 
 I highly recommend setting up a virtual environment to not get conflicts between different versions of packages.
 
