@@ -108,6 +108,7 @@ pip install pandas
 pip install seaborn
 pip install scipy
 pip install scikit-learn
+pip install bs4
 ```
 
 *Side Note*: ```cernrequests``` is also available in pypi, so you could also install it via:
