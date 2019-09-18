@@ -53,13 +53,15 @@ jupyter notebook --port 9999 --ip 127.0.0.1 --no-browser
 
 
 
-### In order to use this script you must have the appropiate certificate in the same directory as the script (Unless you specify the path to it)
+### In order to use the notebook you must have the appropiate certificate in the same directory as the script (Unless you specify the path to it)
 [Open the notebook](ListOfRuns.ipynb) to interact with the code and make the apporpiate changes to your needs.
 
 Notice that there is an `index.html` document. You should ignore this for now as we will create this file repeatedly and rewrite it in the script. This will not be needed in the script but will used for now in the python notebook.
 
 **After playing with the notebook you can see other functionality in the [script](ListRuns.py)**
 
+
+*Side Note* To use the script please look at [Authentication Setup](https://github.com/GuillermoFidalgo/ML4TRKDQM#authentication-setup)
 ### Virtual environment
 
 *Side Note* **If you clone from this repo please remove `venv/` and all of its contents *before* creating a virtual enviroment**
