@@ -10,10 +10,13 @@ from bs4 import BeautifulSoup
 
 def testRR():
     runs = runregistry.get_runs(filter={
-        'run_number': { 'and': [{'>': 270000}, {'<': 310000}]},
-        'tracker-strip': 'GOOD',
-        'oms_attributes.l1_hlt_mode': {'like': '%collision%'}        
+        'run_number': { 'and': [{'>': 272000}, {'<': 326000}]},
+        'tracker_included': True,
+        'tracker-strip': True,
+        'tracker-pixel': True
         })
+        
+        
     return runs
 
 
