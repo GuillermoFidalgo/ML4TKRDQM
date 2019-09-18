@@ -17,6 +17,8 @@ Python 3.6.8
 
 ### Virtual environment
 
+*Side Note* **If you clone from this repo please remove `venv/` and all of its contents *before creating a virtual enviroment***
+
 I highly recommend setting up a virtual environment to not get conflicts between different versions of packages.
 
 You can create a virtual python virtual environment with:
