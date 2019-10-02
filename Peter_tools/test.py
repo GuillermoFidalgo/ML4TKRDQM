@@ -5,17 +5,23 @@ import codecs, os, re
 import cernrequests,runregistry
 from bs4 import BeautifulSoup
 
+def getruns_eos():
+    loc="/eos/cms/store/group/comm_dqm/DQMGUI_data/"
+    
 
 
-
-def testRR():
+def getRR(first=272000,last=326000,tkr_IN=True,tkr_strip_ON=True,tkr_pix_ON=True,collisions=True):
     runs = runregistry.get_runs(filter={
-        'run_number': { 'and': [{'>': 272000}, {'<': 326000}]},
-        'tracker_included': True,
-        'tracker-strip': True,
-        'tracker-pixel': True
+        'run_number': { 'and': [{'>': first}, {'<': last}]},
+        'tracker_included': tkr_IN,
+        'tracker-strip': tkr_strip_ON,
+        'tracker-pixel': tkr_pix_ON
         })
-        
+    if collisions== True:
+        coltype=[]
+        for i in range(len(runs)):
+            coltype.append(re.findall(r'collision*',str(runs[i])))
+        print(coltype)
         
     return runs
 

@@ -29,7 +29,7 @@ end
 # unset irrelevant variables
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/uscms_data/d3/gfidalgo/ML4WTRK/CMSSW_10_2_10/src/ML4TRKDQM/venv"
+set -gx VIRTUAL_ENV "/afs/cern.ch/user/g/gfidalgo/CMSSW_10_2_10/src/ML4TRKDQM/venv"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH
