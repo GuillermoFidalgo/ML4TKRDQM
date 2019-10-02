@@ -1,12 +1,18 @@
 #!/usr/bin/python
 
 import __future__
-import codecs, os, re
+import codecs, os, re, subprocess,shlex
 import cernrequests,runregistry
 from bs4 import BeautifulSoup
 
+
+
+
+
 def getruns_eos():
-    loc="/eos/cms/store/group/comm_dqm/DQMGUI_data/"
+    command="ls -R /eos/cms/store/group/comm_dqm/DQMGUI_data/ | grep ZeroBias > ZeroBias_runs.txt"
+    
+    subprocess.Popen(args)
     
 
 
