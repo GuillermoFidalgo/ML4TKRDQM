@@ -7,13 +7,15 @@ from bs4 import BeautifulSoup
 
 
 
-
-
 def getruns_eos():
     command="ls -R /eos/cms/store/group/comm_dqm/DQMGUI_data/ | grep ZeroBias > ZeroBias_runs.txt"
-    
-    subprocess.Popen(args)
-    
+    file=subprocess.call(command,shell=True)
+
+
+# def getruns_eos():
+#     command="ls -R /eos/cms/store/group/comm_dqm/DQMGUI_data/ | grep ZeroBias > ZeroBias_runs.txt"
+#     file=subprocess.Popen(command,shell=True)
+#     print('Please wait one minute while the file is being created.....")
 
 
 def getRR(first=272000,last=326000,tkr_IN=True,tkr_strip_ON=True,tkr_pix_ON=True,collisions=True):
