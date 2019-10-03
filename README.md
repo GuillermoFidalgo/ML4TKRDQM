@@ -93,7 +93,7 @@ All tools necessary for data retrieval and data analysis are installable via ```
 
 *pip* comes bundled in Python 3.6 so, you should already have it installed.
 
-These commands install all the tools necessary for this notebook:
+These commands install all the tools necessary for this notebook. Each of them have their own documentation. You can start with the general documentation for most of the packages [here](https://github.com/ptrstn/cms-tracker-studies-notebook) and a <ins>seperate documentation</ins> for `runregistry` [here](https://github.com/fabioespinosa/runregistry_api_client) 
 
 ```bash
 pip install git+https://github.com/CMSTrackerDPG/cernrequests
