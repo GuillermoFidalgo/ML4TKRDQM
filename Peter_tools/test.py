@@ -26,7 +26,7 @@ def getlist(file="ZeroBias_runs.txt"):
         i=i+1
     repeat=getrepeatedruns(intruns)
     
-    if len(checkitera)!=0:
+    if len(checkiter)!=0:
         return intruns,checkiter
     else:
         return intruns

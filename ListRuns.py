@@ -1,19 +1,55 @@
 #!/usr/bin/python
 
 import __future__
-import codecs, os, re
+import codecs, os, re, subprocess,shlex,numpy
 import cernrequests,runregistry
 from bs4 import BeautifulSoup
 
+def getlist(file="ZeroBias_runs.txt"):
+    f=open(file).read()
+    runs= re.findall("000(\d{6})",str(f)) #get all 6 digit numbers followed by 000
+    intruns=[int(num) for num in runs] # make the list full on intergers
+    intruns.sort()  #have an ascending sorted list of runs 
+    if len(intruns)==0: # Check if list is empty
+        print("no runs found")
+    else:
+        print("Found some runs")
+    intruns=list(dict.fromkeys(intruns))
+    i=0
+    checkiter=[]
+    for x in intruns:    # Check if all runs are sorted from oldest to newest
+        if x==intruns[-1]:
+            break
+        elif x > intruns[i+1]:
+            print("iteration",i,"is greater the the next iteration")
+            checkiter.append(i)
+        i=i+1
+    repeat=getrepeatedruns(intruns)
+    
+    if len(checkiter)!=0:
+        return intruns,checkiter
+    else:
+        return intruns
+
+def getruntype_eos(runtype="ZeroBias"):
+    command="ls -R /eos/cms/store/group/comm_dqm/DQMGUI_data/ | grep "+runtype+" > "+runtype+"_runs.txt"
+    file=subprocess.call(command,shell=True)
 
 
 
-def testRR():
+def getRR(first=272000,last=326000,tkr_IN=True,tkr_strip_ON=True,tkr_pix_ON=True,collisions=True):
     runs = runregistry.get_runs(filter={
-        'run_number': { 'and': [{'>': 270000}, {'<': 310000}]},
-        'tracker-strip': 'GOOD',
-        'oms_attributes.l1_hlt_mode': {'like': '%collision%'}        
+        'run_number': { 'and': [{'>': first}, {'<': last}]},
+        'tracker_included': tkr_IN,
+        'tracker-strip': tkr_strip_ON,
+        'tracker-pixel': tkr_pix_ON
         })
+    if collisions== True:
+        coltype=[]
+        for i in range(len(runs)):
+            coltype.append(re.findall(r'collision*',str(runs[i])))
+        print(coltype)
+        
     return runs
 
 
