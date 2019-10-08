@@ -14,7 +14,7 @@ def getlist(file="ZeroBias_runs.txt"):
         print("no runs found")
     else:
         print("Found some runs")
-    intruns=list(dict.fromkeys(intruns))
+    intruns=list(dict.fromkeys(intruns)) #make a list into a dict and the back into a list. This eliminates any duplicate runs
     i=0
     checkiter=[]
     for x in intruns:    # Check if all runs are sorted from oldest to newest
