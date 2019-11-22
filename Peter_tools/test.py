@@ -8,13 +8,14 @@ from bs4 import BeautifulSoup
 def getlist(file="ZeroBias_runs.txt"):
     f=open(file).read()
     runs= re.findall("000(\d{6})",str(f)) #get all 6 digit numbers followed by 000
-    intruns=[int(num) for num in runs] # make the list full on intergers
+    intruns=[int(num) for num in runs] # make the list full of intergers
     intruns.sort()  #have an ascending sorted list of runs 
     if len(intruns)==0: # Check if list is empty
         print("no runs found")
     else:
         print("Found some runs")
-    intruns=list(dict.fromkeys(intruns))
+    intruns=list(dict.fromkeys(intruns))  #make a list into a dict and the back into a list. This eliminates any duplicate runs
+
     i=0
     checkiter=[]
     for x in intruns:    # Check if all runs are sorted from oldest to newest
