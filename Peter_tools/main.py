@@ -27,5 +27,7 @@ file=subprocess.call(command,shell=True)
 
 print(file)
 
-#if command == 1:
-#	getruntype_eos()
+if file == 1:
+	getruntype_eos()
+else:
+	print("You have the most updated list of runs locally.\nto retrieve the list of runs do\n Example:\n getlist(runtype='ZeroBias')")
