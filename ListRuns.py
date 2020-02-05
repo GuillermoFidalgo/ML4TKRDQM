@@ -26,11 +26,15 @@ def getlist(file="ZeroBias_runs.txt"):
             checkiter.append(i)
         i=i+1
     repeat=getrepeatedruns(intruns)
-    
+
+
     if len(checkiter)!=0:
-        return intruns,checkiter
+       print("Check the entries number "+checkiter+" of this list")
+       return intruns,checkiter
     else:
-        return intruns
+        return intruns,checkiter
+
+
 
 def getruntype_eos(runtype="ZeroBias"):
     command="ls -R /eos/cms/store/group/comm_dqm/DQMGUI_data/ | grep "+runtype+" > "+runtype+"_runs.txt"
