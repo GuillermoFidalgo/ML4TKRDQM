@@ -50,7 +50,7 @@ if  choice == "b" or choice == "eos":
     
     
 
-### For afs
+### For afs or RR
 
 if choice == "a" or choice == "afs":
     print("Searching in afs....")
