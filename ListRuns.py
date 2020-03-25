@@ -47,13 +47,11 @@ def getRR(first=272000,last=326000,tkr_IN=True,tkr_strip_ON=True,tkr_pix_ON=True
         'run_number': { 'and': [{'>': first}, {'<': last}]},
         'tracker_included': tkr_IN,
         'tracker-strip': tkr_strip_ON,
-        'tracker-pixel': tkr_pix_ON
+        'tracker-pixel': tkr_pix_ON,
+        'class': {
+            'like': '%Collisions%'
+            },
         })
-    if collisions== True:
-        coltype=[]
-        for i in range(len(runs)):
-            coltype.append(re.findall(r'collision*',str(runs[i])))
-        print(coltype)
         
     return runs
 

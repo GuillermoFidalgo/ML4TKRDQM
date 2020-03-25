@@ -44,7 +44,7 @@ if  choice == "b" or choice == "eos":
         list_runs,checkiter=getlist(file="ZeroBias_runs.txt")
     
     subprocess.call('mkdir -pv '+outpath,shell=True)
-    f= open(outpath+'/AvailableRuns.txt',"w")
+    f= open(outpath+'/AvailableRunsEos.txt',"w")
     f.write("%s" % list_runs)
     f.close()
     
@@ -54,9 +54,20 @@ if  choice == "b" or choice == "eos":
 
 if choice == "a" or choice == "afs":
     print("Searching in afs....")
-    getruns_afs()
+    runs=getruns_afs()
+    subprocess.call('mkdir -pv '+outpath,shell=True)
+    f= open(outpath+'/AvailableRunsAfs.txt',"w")
+    f.write("%s" % runs)
+    f.close()
+    
     
     
 elif choice == "c" or choice == "RunRegistry":
-    getRR()
+    runs=getRR()
+    subprocess.call('mkdir -pv '+outpath,shell=True)
+    f= open(outpath+'/AvailableRunsRR.txt',"w")
+    f.write("%s" % runs)
+    f.close()
+
+        
     
