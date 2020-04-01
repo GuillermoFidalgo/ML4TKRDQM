@@ -42,15 +42,14 @@ def getruntype_eos(runtype="ZeroBias"):
 
 
 
-def getRR(first=272000,last=326000,tkr_IN=True,tkr_strip_ON=True,tkr_pix_ON=True,collisions=True):
+def getRR(first=272000,last=326000,tkr_IN=True,tkr_strip_ON=True,tkr_pix_ON=True, name= 'ULReReco2018',cl='Collisions'):
     runs = runregistry.get_runs(filter={
         'run_number': { 'and': [{'>': first}, {'<': last}]},
         'tracker_included': tkr_IN,
         'tracker-strip': tkr_strip_ON,
         'tracker-pixel': tkr_pix_ON,
-        'class': {
-            'like': '%Collisions%'
-            },
+        'class': {  'like': '%cl%' },
+	#'name':  {  'like': '%name%'  },
         })
         
     return runs
