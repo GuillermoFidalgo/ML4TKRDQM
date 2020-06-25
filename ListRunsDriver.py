@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-from ListRuns import *
+from ListRuns_cfg import *
 import sys
 outpath= input('Where would you like to dump output?\n Enter "." for current directory or enter "<a/path/to/directory/>" relative to current directory\n')
 
@@ -15,7 +15,7 @@ elif choice == "N" or choice == "n" or choice == "b":
 	print("Please try again")
 	sys.exit(0)
 
-choice=input('Specify where whould you like to look :\n a) afs\n b) eos\n c)RunRegistry\n')
+choice=input('Specify where whould you like to look :\n a) afs\n b) eos\n c) RunRegistry\n')
 
 if choice == "a" or choice == "afs" or choice == "b" or choice == "eos" or choice == "c" or choice == "RunRegistry":
         print("Will look for runs in",choice)
@@ -63,10 +63,12 @@ if choice == "a" or choice == "afs":
     
     
 elif choice == "c" or choice == "RunRegistry":
+    
+    print("Searching in RR")
     runs=getRR()
     subprocess.call('mkdir -pv '+outpath,shell=True)
-    f= open(outpath+'/AvailableRunsRR.txt',"w")
-    f.write("%s" % runs)
+    f= open(outpath+'/AvailableRunsRR.txt',"w",encoding='utf-8')
+    f.write(r"%s" % runs)
     f.close()
 
         
