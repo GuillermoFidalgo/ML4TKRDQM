@@ -63,12 +63,20 @@ if choice == "a" or choice == "afs":
     
     
 elif choice == "c" or choice == "RunRegistry":
-    
+    run_numbs=[]
     print("Searching in RR")
-    runs=getRR()
+    runs=getRR(first=272000
+		,last=326000
+		,tkr_IN=True
+		,tkr_strip_status='GOOD'
+		#,tkr_pix_status='GOOD'
+		,name= 'UL'
+		,cl='Collisions')
+    for run in runs:
+      run_numbs.append(run['run_number'])
     subprocess.call('mkdir -pv '+outpath,shell=True)
     f= open(outpath+'/AvailableRunsRR.txt',"w",encoding='utf-8')
-    f.write(r"%s" % runs)
+    f.write(r"%s" % run_numbs)
     f.close()
 
         
