@@ -42,16 +42,19 @@ def getruntype_eos(runtype="ZeroBias"):
 
 
 
-def getRR(first=272000,last=326000,tkr_IN=True,tkr_strip_status='GOOD',tkr_pix_status='GOOD', name= 'UL',cl='Collisions'):
+def getRR(first=272000,last=326000,
+		tkr_IN=True,tkr_strip_status='GOOD',
+		#tkr_pix_status='GOOD',
+		name= 'UL',cl='Collisions'):
     runs = runregistry.get_datasets(filter={
-        'run_number': { 'and': [{'>': first}, {'<': last}]},
-        'tracker_included': tkr_IN,
-        'tracker-strip': tkr_strip_status,
-        #'tracker-pixel': tkr_pix_status,
-        'class': {  'like': '%{}%'.format(cl) },
-        'dataset_name':  {  'like': '%{}%'.format(name)  },
-        })
-        
+  "and": [{"name": {"like": "%UL%"}}],
+  "name": {"and": [{"<>": "online"}]},
+  "dataset_attributes.tracker_state": {
+    "and": [{"or": [{"=": "OPEN"}, {"=": "SIGNOFF"}, {"=": "COMPLETED"}]}]
+  }
+}, 
+  ignore_filter_transformation=True
+)        
     return runs
 
 

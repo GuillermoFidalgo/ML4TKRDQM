@@ -69,7 +69,7 @@ elif choice == "c" or choice == "RunRegistry":
     for run in runs:
       run_numbs.append(run['run_number'])
     subprocess.call('mkdir -pv '+outpath,shell=True)
-    f= open(outpath+'/AvailableRunsRR.txt',"w",encoding='utf-8')
+    f= open(outpath+'/AvailableRunsRRAPI.txt',"w",encoding='utf-8')
     f.write(r"%s" % run_numbs)
     f.close()
 
