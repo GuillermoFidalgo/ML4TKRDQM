@@ -1,0 +1,31 @@
+>>> import ListRuns_cfg as L
+>>> list_runs,checkiter=L.getlist(file="ZeroBias_runs.txt")
+Found some runs
+there are 0 repeated runs
+>>> json_list,good,missing,bad=L.compare_with_Gjsn(list_runs)
+
+ Fetching from: https://cms-service-dqm.web.cern.ch/cms-service-dqm/CAF/certification/
+
+ list of relative urls:  ['Collisions18/13TeV/ReReco/Cert_314472-325175_13TeV_17SeptEarlyReReco2018ABC_PromptEraD_Collisions18_JSON.txt', 'Collisions17/13TeV/ReReco/Cert_294927-306462_13TeV_EOY2017ReReco_Collisions17_JSON_v1.txt', 'Collisions16/13TeV/ReReco/Final/Cert_271036-284044_13TeV_ReReco_07Aug2017_Collisions16_JSON.txt']
+
+ amount of runs in the json 478 in Collisions18/13TeV/ReReco/Cert_314472-325175_13TeV_17SeptEarlyReReco2018ABC_PromptEraD_Collisions18_JSON.txt
+
+ From 315257 to 325172
+
+ amount of runs in the json 474 in Collisions17/13TeV/ReReco/Cert_294927-306462_13TeV_EOY2017ReReco_Collisions17_JSON_v1.txt
+
+ From 297050 to 306460
+
+ amount of runs in the json 393 in Collisions16/13TeV/ReReco/Final/Cert_271036-284044_13TeV_ReReco_07Aug2017_Collisions16_JSON.txt
+
+ From 273158 to 284044
+
+ 0 good runs
+
+ 1345 missing runs
+
+ 5091 bad runs
+----------------------
+
+
+
