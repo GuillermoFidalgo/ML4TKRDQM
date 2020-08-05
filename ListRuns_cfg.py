@@ -2,7 +2,8 @@
 
 import __future__
 import codecs, os, re, subprocess,shlex,numpy
-import cernrequests,runregistry,requests
+# import cernrequests,runregistry
+import requests
 from bs4 import BeautifulSoup
 
 def getlist(file="ZeroBias_runs.txt"):
@@ -104,10 +105,10 @@ def compare_with_Gjsn(global_runs_with_rootfiles):
     good=[]
     missing=[]
     bad=[]
-    ############################## Experimental
-    for grun in global_runs_with_rootfiles:
-	if grun in json_list
-    #################################
+#     ############################## Experimental
+#     for grun in global_runs_with_rootfiles:
+# 	if grun in json_list
+#     #################################
 
 
     for jrun in json_list:
