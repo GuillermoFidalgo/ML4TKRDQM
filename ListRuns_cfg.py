@@ -2,7 +2,7 @@
 
 import __future__
 import codecs, os, re, subprocess,shlex,numpy
-# import cernrequests,runregistry
+import cernrequests,runregistry
 import requests
 from bs4 import BeautifulSoup
 
