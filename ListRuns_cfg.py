@@ -6,34 +6,39 @@ import codecs, os, re, subprocess,shlex,numpy
 import requests
 from bs4 import BeautifulSoup
 
-def getlist(file="ZeroBias_runs.txt"):
+def getlist(file="ZeroBias_runs.txt",Zerobias=True):
     f=open(file).read()
-    runs= re.findall("000(\d{6})",str(f)) #get all 6 digit numbers followed by 000
-    intruns=[int(num) for num in runs] # make the list full of intergers
-    intruns.sort()  #have an ascending sorted list of runs 
-    if len(intruns)==0: # Check if list is empty
+    if Zerobias==True:
+        runs= re.findall("000(\d{6})",str(f)) #get all 6 digit numbers followed by 000
+        runs=[int(num) for num in runs] # make the list full of intergers
+    else:
+        runs= re.findall("(\d{6})",str(f)) #get all 6 digit numbers
+        runs=[int(num) for num in runs] # make the list full of intergers
+    runs.sort()  #have an ascending sorted list of runs 
+    
+    if len(runs)==0: # Check if list is empty
         print("no runs found")
     else:
         print("Found some runs")
-    intruns=list(dict.fromkeys(intruns))  #make a list into a dict and the back into a list. This eliminates any duplicate runs
+    runs=list(dict.fromkeys(runs))  #make a list into a dict and the back into a list. This eliminates any duplicate runs
 
     i=0
     checkiter=[]
-    for x in intruns:    # Check if all runs are sorted from oldest to newest
-        if x==intruns[-1]:
+    for x in runs:    # Check if all runs are sorted from oldest to newest
+        if x==runs[-1]:
             break
-        elif x > intruns[i+1]:
+        elif x > runs[i+1]:
             print("iteration",i,"is greater the the next iteration")
             checkiter.append(i)
         i=i+1
-    repeat=getrepeatedruns(intruns)
+    repeat=getrepeatedruns(runs)
 
 
     if len(checkiter)!=0:
-       print("Check the entries number "+checkiter+" of this list")
-       return intruns,checkiter
+        print("Check the entries number "+checkiter+" of this list")
+        return runs,checkiter
     else:
-        return intruns,checkiter
+        return runs,checkiter
 
 
 
