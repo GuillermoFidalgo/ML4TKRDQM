@@ -105,28 +105,36 @@ def compare_with_Gjsn(global_runs_with_rootfiles):
         print('\n',"amount of runs in the json",len(a),"in",url)
         print('\n',"From",a[0],"to",a[-1])
         json_runslist.append(a)
-    json_list = [item for sublist in json_runslist for item in sublist]
-
+    json_list = [int(item) for sublist in json_runslist for item in sublist]
+    json_list.sort()
     good=[]
     missing=[]
     bad=[]
-#     ############################## Experimental
-#     for grun in global_runs_with_rootfiles:
-# 	if grun in json_list
-#     #################################
-
-
+    
+    ############### Experimental
     for jrun in json_list:
-        for grun in global_runs_with_rootfiles:
-            if jrun==grun:
-                good.append(jrun)            
-        if jrun not in global_runs_with_rootfiles:
+        if jrun in list_runs:
+            good.append(jrun)            
+        else:
             missing.append(jrun)
 
-    for grun in global_runs_with_rootfiles:
-        if grun not in json_list:
+    for run in list_runs:
+        if run not in json_list:
             bad.append(grun)
-    # print "all good runs found",good,"\n"
+
+
+                
+    print('---'*20)
+    print( '\n',len(good),"Good runs")
+    print( '\n',len(missing),"Missing runs")
+    print( '\n',len(bad),"bad runs")
+
+    return json_list,good,missing,bad
+    
+    
+    ###############
+    
+    
     print( '\n',len(good),"good runs")
     print( '\n',len(missing),"missing runs")
     print( '\n',len(bad),"bad runs")
@@ -180,7 +188,7 @@ def getruns_afs(year="all",rdirs='False'):
             else:
 
                 for n in re.findall(r"R(\d+)",str(entries)):    # This will only keep the 6 digits of the run numbers that we need (without the "R000")
-                    x=str(int(n))                               # Since we wont want to do math with these numbers I will convert them to strings
+                    x=int(n)                                    # We want to make the run numbers intergers
                     runs_with_rootfiles.append(x)               # Fill the list
                     global_runs_with_rootfiles.append(x)        # Fill the list
 
