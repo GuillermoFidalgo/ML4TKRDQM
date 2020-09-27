@@ -53,7 +53,7 @@ def getRR(first=272000,last=326000,tkr_IN=True,tkr_strip_status='GOOD',tkr_pix_s
         'run_number': { 'and': [{'>': first}, {'<': last}]},
         'tracker_included': tkr_IN,
         'tracker-strip': tkr_strip_status,
-        #'tracker-pixel': tkr_pix_status,
+        #'tracker-pixel': tkr_pix_status, this seems to not work on the get_datasets() method
         'class': {  'like': '%{}%'.format(cl) },
         'dataset_name':  {  'like': '%{}%'.format(name)  },
         })
@@ -80,7 +80,7 @@ def getrepeatedruns(global_runs_with_rootfiles):
 
 
 
-def compare_with_Gjsn(global_runs_with_rootfiles):
+def compare_with_Gjsn(list_runs):
     baseurl='https://cms-service-dqm.web.cern.ch/cms-service-dqm/CAF/certification/'
     json_runs_2018="Collisions18/13TeV/ReReco/Cert_314472-325175_13TeV_17SeptEarlyReReco2018ABC_PromptEraD_Collisions18_JSON.txt"
     json_runs_2017="Collisions17/13TeV/ReReco/Cert_294927-306462_13TeV_EOY2017ReReco_Collisions17_JSON_v1.txt"
@@ -111,7 +111,6 @@ def compare_with_Gjsn(global_runs_with_rootfiles):
     missing=[]
     bad=[]
     
-    ############### Experimental
     for jrun in json_list:
         if jrun in list_runs:
             good.append(jrun)            
@@ -120,25 +119,17 @@ def compare_with_Gjsn(global_runs_with_rootfiles):
 
     for run in list_runs:
         if run not in json_list:
-            bad.append(grun)
+            bad.append(run)
 
 
                 
     print('---'*20)
     print( '\n',len(good),"Good runs")
     print( '\n',len(missing),"Missing runs")
-    print( '\n',len(bad),"bad runs")
+    print( '\n',len(bad),"Bad runs")
 
     return json_list,good,missing,bad
     
-    
-    ###############
-    
-    
-    print( '\n',len(good),"good runs")
-    print( '\n',len(missing),"missing runs")
-    print( '\n',len(bad),"bad runs")
-    return json_list,good,missing,bad
 
 
 
